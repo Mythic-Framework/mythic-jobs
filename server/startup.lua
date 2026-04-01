@@ -18,6 +18,7 @@ function RetrieveComponents()
 	Generator = exports['mythic-base']:FetchComponent('Generator')
 	Phone = exports['mythic-base']:FetchComponent('Phone')
 	Jobs = exports['mythic-base']:FetchComponent('Jobs')
+	Version = exports['mythic-base']:FetchComponent('Version')
 end
 
 AddEventHandler('Core:Shared:Ready', function()
@@ -33,7 +34,8 @@ AddEventHandler('Core:Shared:Ready', function()
 		'Generator',
 		'Chat',
 		'Jobs',
-		'Phone'
+		'Phone',
+		'Version'
 	}, function(error)
 		if #error > 0 then return; end
 		RetrieveComponents()
@@ -46,6 +48,8 @@ AddEventHandler('Core:Shared:Ready', function()
 		RunStartup()
 
 		TriggerEvent('Jobs:Server:Startup')
+
+		Version:Check('Mythic-Framework/Mythic-VersionCheckers', GetCurrentResourceName())
 	end)
 end)
 
